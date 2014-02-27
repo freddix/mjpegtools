@@ -1,14 +1,13 @@
 Summary:	Tools for recording, editing, playing back and MPEG-encoding video under Linux
 Name:		mjpegtools
-Version:	2.0.0
-Release:	2
+Version:	2.1.0
+Release:	1
 License:	GPL
 Group:		Applications/Graphics
 Source0:	http://downloads.sourceforge.net/mjpeg/%{name}-%{version}.tar.gz
-# Source0-md5:	903e1e3b967eebcc5fe5626d7517dc46
-Patch0:		%{name}-gcc.patch
-Patch1:		%{name}-opt.patch
-Patch2:		%{name}-link.patch
+# Source0-md5:	57bf5dd78976ca9bac972a6511b236f3
+Patch0:		%{name}-opt.patch
+Patch1:		%{name}-link.patch
 URL:		http://mjpeg.sourceforge.net/
 BuildRequires:	SDL-devel
 BuildRequires:	autoconf
@@ -58,10 +57,9 @@ GUI for the mjpegtools.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
 
 %build
-rm -f aclocal.m4
+%{__rm} aclocal.m4
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
@@ -78,7 +76,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-rm -f $RPM_BUILD_ROOT%{_infodir}/dir*
+%{__rm} $RPM_BUILD_ROOT%{_infodir}/dir*
 
 %clean
 rm -rf $RPM_BUILD_ROOT
